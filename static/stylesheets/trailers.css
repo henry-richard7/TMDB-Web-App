@@ -1,0 +1,22 @@
+.carousel-inner,
+      .carousel-item,
+      .carousel-item.active,
+      iframe {
+        height: 45vh;
+      }
+
+      iframe {
+        
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+      }
+
+      
+
+      /* Height for devices larger than 576px */
+      @media (min-width: 992px) {
+        #introCarousel {
+          margin-top: -58.59px;
+        }
+      }

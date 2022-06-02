@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movies</title>
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://img.icons8.com/external-flat-juicy-fish/500/external-movie-film-making-flat-flat-juicy-fish.png"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">TMDB App</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="movies"
+                >Movies</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="shows">TV Shows</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="search-panel container-fluid pt-2 shadow pb-2">
+      <div class="input-group mb-3">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Search..."
+          aria-label="Search..."
+          aria-describedby="button-addon2"
+          id="query"
+        />
+        <button
+          class="btn btn-outline-secondary"
+          type="button"
+          id="button-addon2"
+          onclick="myFunction()"
+        >
+          <i class="fas fa-search"></i> Search
+        </button>
+      </div>
+    </div>
+    <script>
+      function myFunction() {
+        query = document.getElementById("query").value;
+        window.open("/search_movies?query=" + query, "_self");
+      }
+    </script>
+    <div class="Movies-list pt-2">
+      <div class="container-fluid">
+        <div class="row">
+          {% for movie in movies %}
+          <div class="col-6 col-md-2 pt-1">
+            <div class="card">
+              <img
+                src="https://image.tmdb.org/t/p/w500/{{movie['poster_path']}}"
+                class="card-img-top"
+                draggable="false"
+                onerror="this.onerror=null; this.src='https://www.virginiaindustries.co.in/img/no-image.png'"
+              />
+              <div class="card-body">
+                <h6 class="card-title fs-5 fw-bolder text-truncate">
+                  {{movie['title']}}
+                </h6>
+                <p class="card-text text-muted fs-6">
+                  Released in {{movie['release_date']}}
+                </p>
+                <p>
+                  <i class="fas fa-star"></i>
+                  {{movie['vote_average']}}
+                </p>
+                <p class="card-text fs-6">
+                  <a
+                    href="/get_movie?id={{movie['id']}}"
+                    class="btn btn-secondary fs-6 container-fluid"
+                    ><i class="fa fa-eye"></i> Watch Now</a
+                  >
+                </p>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid pt-3">{{pagination.links}}</div>
+    <div class="container-fluid">
+      <footer class="bg-dark text-center text-white">
+        <!-- Grid container -->
+        <div class="container p-4 pb-0">
+          <!-- Section: Social media -->
+          <section class="mb-4">
+            <!-- Telegram -->
+            <a
+              class="btn btn-outline-light btn-floating m-1"
+              href="https://t.me/hr_tools"
+              role="button"
+              ><i class="fab fa-telegram"></i
+            ></a>
+
+            <!-- Hackerrank -->
+            <a
+              class="btn btn-outline-light btn-floating m-1"
+              href="https://www.hackerrank.com/henry_richard_7"
+              role="button"
+              ><i class="fab fa-hackerrank"></i
+            ></a>
+
+            <!-- Linkedin -->
+            <a
+              class="btn btn-outline-light btn-floating m-1"
+              href="https://www.linkedin.com/in/henry-richard7/"
+              role="button"
+              ><i class="fab fa-linkedin-in"></i
+            ></a>
+
+            <!-- Github -->
+            <a
+              class="btn btn-outline-light btn-floating m-1"
+              href="https://github.com/henry-richard7/"
+              role="button"
+              ><i class="fab fa-github"></i
+            ></a>
+          </section>
+          <!-- Section: Social media -->
+        </div>
+        <!-- Grid container -->
+
+        <!-- Copyright -->
+        <div
+          class="text-center p-3"
+          style="background-color: rgba(0, 0, 0, 0.2)"
+        >
+          © 2022 Copyright: Henry Richard J
+        </div>
+        <!-- Copyright -->
+      </footer>
+    </div>
+    <!-- End of .container -->
+  </body>
+</html>
